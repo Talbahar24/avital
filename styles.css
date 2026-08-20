@@ -159,9 +159,24 @@ p:last-child {
   gap: 20px;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.logo img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #f7f1e6;
+}
+
 .brand-script {
   margin: 0;
-  font-size: 1.55rem;
+  font-size: 1.45rem;
   color: #f7f1e6;
 }
 
@@ -685,6 +700,10 @@ p:last-child {
 }
 
 @media (max-width: 980px) {
+  .logo .brand-script {
+    display: none;
+  }
+
   .menu-toggle {
     display: block;
   }
