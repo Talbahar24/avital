@@ -1,23 +1,32 @@
-const nav = document.getElementById("site-nav");
-const toggle = document.querySelector(".menu-toggle");
+const nav = document.getElementById("nav");
+const menu = document.querySelector(".menu");
+const form = document.getElementById("form");
 
-if (toggle && nav) {
-  toggle.addEventListener("click", () => {
+if (menu && nav) {
+  menu.addEventListener("click", () => {
     const open = nav.classList.toggle("open");
-    toggle.setAttribute("aria-expanded", String(open));
+    menu.setAttribute("aria-expanded", String(open));
   });
 
   nav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       nav.classList.remove("open");
-      toggle.setAttribute("aria-expanded", "false");
+      menu.setAttribute("aria-expanded", "false");
     });
   });
 }
 
-document.querySelectorAll('a[href="#top"]').forEach((link) => {
-  link.addEventListener("click", (event) => {
+if (form) {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const data = new FormData(form);
+    const text = [
+      "שלום אביטל, אשמח לתאם סדנה.",
+      `שם: ${data.get("name")}`,
+      `טלפון: ${data.get("phone")}`,
+      `סוג האירוע: ${data.get("event") || "לא צוין"}`,
+      `תאריך ומיקום: ${data.get("details") || "לא צוין"}`,
+    ].join("\n");
+    window.open(`https://wa.me/972509054860?text=${encodeURIComponent(text)}`, "_blank", "noopener");
   });
-});
+}

@@ -6,153 +6,177 @@
     <title>אביטל וטניק | סדנאות אבני חן ותכשיטים</title>
     <meta
       name="description"
-      content="יוצרים תכשיטים עם כוונה ומשמעות. סדנאות אבני חן ותכשיטים של אביטל וטניק."
+      content="סדנאות אבני חן ותכשיטים עם כוונה ומשמעות. בחירה אישית, יצירה והקשבה — מזכרת שנשארת."
     />
     <link rel="icon" href="images/logo.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Gveret+Levin&family=Heebo:wght@700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Heebo:wght@500;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body id="top">
-    <header class="site-header">
-      <div class="wrap header-inner">
-        <a class="logo" href="#top">
-          <img src="images/logo.png" alt="Avital Vatnik" />
-          <span>סדנאות אבני חן ותכשיטים</span>
+  <body>
+    <header class="header">
+      <div class="container header__row">
+        <a class="logo" href="#">
+          <img src="images/logo.png" alt="" />
+          <span>
+            אביטל וטניק
+            <small>סדנאות תכשיטים</small>
+          </span>
         </a>
-        <nav class="nav" id="site-nav">
-          <a href="#value">למה הסדנה</a>
-          <a href="#process">מסלול החוויה</a>
-          <a class="nav-cta" href="#contact">תיאום סדנה</a>
+        <nav class="nav" id="nav">
+          <a href="#about">על הסדנה</a>
+          <a href="#steps">איך זה עובד</a>
+          <a href="#contact">יצירת קשר</a>
         </nav>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <a class="button button--small" href="#contact">תיאום סדנה</a>
+        <button class="menu" type="button" aria-controls="nav" aria-expanded="false">
           <span class="sr-only">תפריט</span>
-          <span></span>
-          <span></span>
         </button>
       </div>
     </header>
 
     <main>
       <section class="hero">
-        <div class="wrap hero-grid">
-          <div class="hero-copy">
-            <p class="kicker">סדנאות אבני חן ותכשיטים</p>
-            <h1>יוצרים תכשיטים</h1>
-            <p class="script">עם כוונה ומשמעות</p>
-            <p class="lead">
+        <div class="container hero__grid">
+          <div>
+            <p class="eyebrow">סדנאות אבני חן ותכשיטים</p>
+            <h1>יוצרים תכשיטים עם כוונה ומשמעות</h1>
+            <p class="hero__text">
               חוויה מיוחדת ומקרבת המשלבת אבני חן טבעיות, בחירה אישית, הקשבה וערך רגשי עמוק שפותח את הלב.
             </p>
-            <a class="btn" href="#contact">לתאום סדנה והשארת פרטים</a>
+            <div class="hero__actions">
+              <a class="button" href="#contact">לתאום סדנה והשארת פרטים</a>
+              <a class="text-link" href="#steps">למסלול החוויה</a>
+            </div>
           </div>
-          <div class="hero-visual">
-            <img class="hero-main" src="images/guidance.jpg" alt="הנחיה אישית בסדנת תכשיטים" />
-            <img class="hero-round" src="images/guidance.jpg" alt="משתתפת בסדנה" />
+          <img src="images/guidance.jpg" alt="הנחיה אישית בסדנת יצירת תכשיטים" />
+        </div>
+      </section>
+
+      <section class="about" id="about">
+        <div class="container">
+          <div class="about__intro">
+            <h2>הרבה מעבר לסתם תכשיט</h2>
+            <p>
+              ברוב סדנאות היצירה, המשתתפים מכינים פריט יפה ויוצאים איתו הביתה.
+              בסדנאות שלי, היצירה היא רק השער לחוויה רגשית עמוקה יותר.
+            </p>
+          </div>
+          <div class="cards">
+            <article>
+              <h3>בחירה מודעת</h3>
+              <p>כל משתתף בוחר אבן חן עם תכונה שהוא רוצה לחזק בחייו: ביטחון, רוגע, שמחה או אהבה.</p>
+            </article>
+            <article>
+              <h3>שיח וחיבור אישי</h3>
+              <p>הסדנה יוצרת מרחב מעצים ומקשיב, בו המשתתפים משתפים את הבחירות שלהם.</p>
+            </article>
+            <article>
+              <h3>מזכרת לחיים</h3>
+              <p>התכשיט שנוצר הוא לא סתם יצירה במגירה. הוא קמע אישי שמזכיר את הכוונה שנבחרה.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <section class="value" id="value">
-        <div class="wrap">
-          <div class="value-head">
-            <img class="shot tilt-left" src="images/instructor.jpg" alt="אביטל מנחה סדנה" />
-            <div>
-              <h2>הרבה מעבר לסתם תכשיט</h2>
-              <p>
-                ברוב סדנאות היצירה, המשתתפים מכינים פריט יפה ויוצאים איתו הביתה.
-                בסדנאות שלי, היצירה היא רק השער לחוויה רגשית עמוקה יותר.
-              </p>
-            </div>
-            <img class="shot tilt-right" src="images/family-event.jpg" alt="סדנה סביב שולחן היצירה" />
-          </div>
-
-          <ul class="stones">
+      <section class="split">
+        <img src="images/teaching.jpg" alt="משתתפות בסדנה סביב שולחן היצירה" />
+        <div class="split__copy">
+          <h2>אבן שמדברת אליך</h2>
+          <p>כל משתתף בוחר אבן עם תכונה שהיה רוצה להכניס יותר לחיים.</p>
+          <ul class="tags">
             <li>אומץ</li>
             <li>שמחה</li>
             <li>יצירתיות</li>
             <li>חיבור</li>
+            <li>ביטחון</li>
+            <li>רוגע</li>
           </ul>
-
-          <div class="value-body">
-            <img class="shot" src="images/table-stones.jpg" alt="אבני חן ותכשיטים" />
-            <ul class="points">
-              <li>
-                <strong>בחירה מודעת:</strong>
-                כל משתתף בוחר אבן חן עם תכונה שהוא רוצה לחזק בחייו (ביטחון, רוגע, שמחה, אהבה).
-              </li>
-              <li>
-                <strong>שיח וחיבור אישי:</strong>
-                הסדנה יוצרת מרחב מעצים ומקשיב, בו המשתתפים משתפים את הבחירות שלהם.
-              </li>
-              <li>
-                <strong>מזכרת לחיים:</strong>
-                התכשיט שנוצר הוא לא סתם יצירה במגירה – הוא קמע אישי המזכיר את הכוונה שנבחרה.
-              </li>
-            </ul>
-          </div>
         </div>
       </section>
 
-      <section class="process" id="process">
-        <div class="wrap">
-          <div class="section-title">
-            <h2>מסלול החוויה</h2>
-            <p class="script">ארבעת שלבי הסדנה</p>
-          </div>
-          <div class="steps">
-            <article>
+      <section class="steps" id="steps">
+        <div class="container">
+          <h2>מסלול החוויה</h2>
+          <p class="section-lead">ארבעה שלבים, מההיכרות ועד המזכרת שיוצאים איתה הביתה.</p>
+          <ol>
+            <li>
               <img src="images/guidance.jpg" alt="" />
-              <span>1</span>
-              <h3>היכרות והסבר</h3>
-              <p>הקדמה מרתקת על עולם אבני החן, התכונות, האנרגיות והמשמעויות המיוחדות של כל אבן.</p>
-            </article>
-            <article>
+              <div>
+                <h3>היכרות והסבר</h3>
+                <p>הקדמה על עולם אבני החן, התכונות, האנרגיות והמשמעויות המיוחדות של כל אבן.</p>
+              </div>
+            </li>
+            <li>
               <img src="images/table-stones.jpg" alt="" />
-              <span>2</span>
-              <h3>בחירת אבן אישית</h3>
-              <p>כל משתתף בוחר את האבן שמדברת אליו ומכניס כוונה אישית לחייו (אומץ, שלווה, ביטחון).</p>
-            </article>
-            <article>
-              <img src="images/teaching.jpg" alt="" />
-              <span>3</span>
-              <h3>עיצוב ויצירה</h3>
-              <p>עבודה מעשית עם מגוון חומרים עשיר לעיצוב התכשיט. קבלת ידע ליצור אחריך גם לבד.</p>
-            </article>
-            <article>
+              <div>
+                <h3>בחירת אבן אישית</h3>
+                <p>כל משתתף בוחר את האבן שמדברת אליו ומכניס כוונה אישית לחייו.</p>
+              </div>
+            </li>
+            <li>
+              <img src="images/stations.jpg" alt="" />
+              <div>
+                <h3>עיצוב ויצירה</h3>
+                <p>עבודה מעשית עם מגוון חומרים עשיר לעיצוב התכשיט, כולל ידע שאפשר לקחת הביתה.</p>
+              </div>
+            </li>
+            <li>
               <img src="images/instructor.jpg" alt="" />
-              <span>4</span>
-              <h3>אריזה ומזכרת</h3>
-              <p>אריזה ממותגת יפה, מתנה מרגשת שנשארת ותוסיפה משמעות.</p>
-            </article>
-          </div>
+              <div>
+                <h3>אריזה ומזכרת</h3>
+                <p>אריזה ממותגת יפה, מתנה מרגשת שנשארת ומוסיפה משמעות.</p>
+              </div>
+            </li>
+          </ol>
         </div>
       </section>
 
       <section class="contact" id="contact">
-        <div class="wrap contact-box">
-          <img src="images/logo.png" alt="Avital Vatnik" />
-          <h2>לתאום סדנה והשארת פרטים</h2>
-          <p>אשמח להגיע אליכם וליצור יחד חוויה מיוחדת.</p>
-          <a
-            class="btn"
-            href="https://wa.me/972509054860?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%D7%98%D7%9C%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%A1%D7%93%D7%A0%D7%94."
-            target="_blank"
-            rel="noopener"
-          >
-            שליחה בוואטסאפ
-          </a>
+        <div class="container contact__grid">
+          <div>
+            <h2>לתאום סדנה והשארת פרטים</h2>
+            <p>כתבו כמה מילים על האירוע, ואחזור אליכם לתיאום.</p>
+            <a
+              class="button button--whatsapp"
+              href="https://wa.me/972509054860?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%90%D7%91%D7%99%D7%98%D7%9C%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%A1%D7%93%D7%A0%D7%94."
+              target="_blank"
+              rel="noopener"
+            >
+              מעדיפים וואטסאפ?
+            </a>
+          </div>
+          <form id="form">
+            <label>
+              שם מלא
+              <input name="name" required autocomplete="name" />
+            </label>
+            <label>
+              טלפון
+              <input name="phone" type="tel" required autocomplete="tel" />
+            </label>
+            <label>
+              סוג האירוע
+              <input name="event" placeholder="יום הולדת, ערב נשים, אירוע חברה..." />
+            </label>
+            <label>
+              תאריך ומיקום משוערים
+              <input name="details" />
+            </label>
+            <button class="button" type="submit">שליחת פרטים</button>
+          </form>
         </div>
       </section>
     </main>
 
-    <footer>
-      <div class="wrap footer-inner">
+    <footer class="footer">
+      <div class="container footer__row">
         <p>אביטל וטניק · סדנאות אבני חן ותכשיטים</p>
-        <a href="#top">חזרה למעלה</a>
+        <a href="#">חזרה למעלה</a>
       </div>
     </footer>
 
