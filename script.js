@@ -1,20 +1,23 @@
 const nav = document.getElementById("nav");
-const menu = document.querySelector(".menu");
+const burger = document.querySelector(".burger");
 const form = document.getElementById("form");
 
-if (menu && nav) {
-  menu.addEventListener("click", () => {
+if (burger && nav) {
+  burger.addEventListener("click", () => {
     const open = nav.classList.toggle("open");
-    menu.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-expanded", String(open));
   });
-
   nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("open");
-      menu.setAttribute("aria-expanded", "false");
-    });
+    link.addEventListener("click", () => nav.classList.remove("open"));
   });
 }
+
+document.querySelectorAll('a[href="#top"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
 
 if (form) {
   form.addEventListener("submit", (event) => {
