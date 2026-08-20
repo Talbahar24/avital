@@ -1,29 +1,422 @@
+:root {
+  --paper: #f4ecdf;
+  --navy: #2f4f6e;
+  --navy-deep: #243d56;
+  --ink: #2a3f54;
+  --muted: #5c6d7a;
+  --script: #d06a3a;
+  --white: #fffdf8;
+  --header: 78px;
+}
+
 * {
   box-sizing: border-box;
 }
 
-html,
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  background: #f4ecdf;
+  font-family: "Assistant", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.75;
 }
 
-.poster {
-  position: relative;
-  width: min(720px, 100%);
-  margin: 0 auto;
-}
-
-.poster img {
+img {
+  max-width: 100%;
   display: block;
-  width: 100%;
-  height: auto;
 }
 
-.cta {
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Heebo", sans-serif;
+  color: var(--navy);
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.wrap {
+  width: min(1120px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.sr-only {
   position: absolute;
-  top: 21.5%;
-  right: 28%;
-  width: 38%;
-  height: 4.5%;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.script {
+  font-family: "Gveret Levin", "Assistant", cursive;
+  color: var(--script);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  margin: 0 0 16px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: var(--script);
+  color: #fff;
+  font-weight: 700;
+  transition: 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background: #b85a32;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--navy);
+  color: #f7f1e6;
+}
+
+.header-inner {
+  min-height: var(--header);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo img {
+  width: 54px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.logo span {
+  font-family: "Gveret Levin", cursive;
+  font-size: 1.4rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav a {
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: 0.2s ease;
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  background: rgba(247, 241, 230, 0.18);
+  color: #fff;
+}
+
+.nav-cta {
+  background: var(--script);
+  color: #fff;
+}
+
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 1.6px;
+  margin: 6px auto;
+  background: #f7f1e6;
+}
+
+.hero {
+  padding: 72px 0 80px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.kicker {
+  margin: 0 0 12px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  margin-bottom: 0;
+}
+
+.lead {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 34ch;
+}
+
+.hero-visual {
+  position: relative;
+}
+
+.hero-main {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  object-position: 45% center;
+  border-radius: 220px 220px 28px 28px;
+}
+
+.hero-round {
+  position: absolute;
+  inset-inline-start: -24px;
+  bottom: 24px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  object-position: 15% center;
+  border: 7px solid #fff;
+  border-radius: 50%;
+}
+
+.value,
+.process,
+.contact {
+  padding: 88px 0;
+  scroll-margin-top: 90px;
+}
+
+.value {
+  background: #efe4d0;
+}
+
+.value-head {
+  display: grid;
+  grid-template-columns: 180px 1fr 180px;
+  gap: 32px;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.value-head h2 {
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+}
+
+.value-head p,
+.points {
+  color: var(--muted);
+}
+
+.shot {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background: #fff;
+  padding: 8px 8px 22px;
+  box-shadow: 0 16px 32px rgba(42, 63, 84, 0.12);
+}
+
+.tilt-left {
+  transform: rotate(-5deg);
+}
+
+.tilt-right {
+  transform: rotate(5deg);
+}
+
+.stones {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 48px;
+}
+
+.stones li {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--script);
+  font-family: "Gveret Levin", cursive;
+  font-size: 1.4rem;
+}
+
+.value-body {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.value-body .shot {
+  height: 280px;
+}
+
+.points {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 18px;
+}
+
+.points strong {
+  display: block;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-title h2 {
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+  margin-bottom: 0;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.steps article {
+  background: #fff;
+  padding: 14px 14px 22px;
+  box-shadow: 0 16px 32px rgba(42, 63, 84, 0.1);
+}
+
+.steps img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  margin-bottom: 14px;
+}
+
+.steps span {
+  display: inline-block;
+  font-family: "Gveret Levin", cursive;
+  color: var(--script);
+  font-size: 1.8rem;
+}
+
+.contact {
+  background: var(--navy);
+  color: #f7f1e6;
+  text-align: center;
+}
+
+.contact h2,
+.contact p {
+  color: #f7f1e6;
+}
+
+.contact-box img {
+  width: 96px;
+  margin: 0 auto 18px;
+  border-radius: 16px;
+}
+
+.contact .btn {
+  margin-top: 8px;
+}
+
+footer {
+  background: var(--navy-deep);
+  color: rgba(247, 241, 230, 0.75);
+  padding: 22px 0;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.footer-inner a:hover,
+.footer-inner a:focus-visible {
+  color: #fff;
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    inset-inline: 0;
+    top: var(--header);
+    background: var(--navy);
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .logo span {
+    display: none;
+  }
+
+  .hero-grid,
+  .value-head,
+  .value-body,
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-main {
+    height: 360px;
+  }
+
+  .tilt-left,
+  .tilt-right {
+    transform: none;
+  }
 }
