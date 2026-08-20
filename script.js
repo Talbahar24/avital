@@ -40,6 +40,13 @@ if (lightbox && lightboxImage) {
   });
 }
 
+document.querySelectorAll('a[href="#top"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+
 if (form) {
   form.addEventListener("submit", (event) => {
     event.preventDefault();

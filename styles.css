@@ -173,6 +173,15 @@ p:last-child {
 
 .nav a {
   font-size: 0.95rem;
+  padding: 8px 12px;
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  background: rgba(247, 241, 230, 0.2);
+  color: #fff;
 }
 
 .nav-cta {
@@ -180,6 +189,13 @@ p:last-child {
   color: white;
   padding: 8px 14px;
   border-radius: 999px;
+}
+
+.nav-cta:hover,
+.nav-cta:focus-visible {
+  background: #b85a32;
+  color: #fff;
+  transform: translateY(-1px);
 }
 
 .menu-toggle {
@@ -623,7 +639,21 @@ p:last-child {
 .footer-inner {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 16px;
+}
+
+.back-to-top {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(247, 241, 230, 0.35);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  background: #f7f1e6;
+  color: var(--navy);
 }
 
 .lightbox {
