@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id              String    @id @default(cuid())
+  slug            String    @unique
+  name            String
+  description     String    @default("")
+  care            String    @default("")
+  priceAgorot     Int
+  compareAtAgorot Int?
+  category        String
+  inventoryMode   String    @default("one_piece")
+  stockQty        Int       @default(1)
+  status          String    @default("draft")
+  stone           String    @default("")
+  meaning         String    @default("")
+  metal           String    @default("")
+  isFeatured      Boolean   @default(false)
+  showInLookbook  Boolean   @default(false)
+  seoTitle        String    @default("")
+  seoDescription  String    @default("")
+  reservedUntil   DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  soldAt          DateTime?
+  images          ProductImage[]
+  orderItems      OrderItem[]
+  lookbookPhotos  LookbookPhoto[]
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  path      String
+  alt       String  @default("")
+  sort      Int     @default(0)
+  isPrimary Boolean @default(false)
+}
+
+model Order {
+  id                 String   @id @default(cuid())
+  publicNumber       String   @unique
+  email              String
+  phone              String
+  fullName           String
+  shippingMethod     String
+  city               String   @default("")
+  street             String   @default("")
+  streetNumber       String   @default("")
+  apartment          String   @default("")
+  note               String   @default("")
+  subtotalAgorot     Int
+  shippingAgorot     Int
+  totalAgorot        Int
+  paymentStatus      String   @default("pending")
+  fulfillmentStatus  String   @default("new")
+  provider           String   @default("sandbox")
+  providerPaymentId  String   @default("")
+  trackingNumber     String   @default("")
+  cancellationAccepted Boolean @default(false)
+  createdAt          DateTime @default(now())
+  paidAt             DateTime?
+  items              OrderItem[]
+}
+
+model OrderItem {
+  id               String  @id @default(cuid())
+  orderId          String
+  order            Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId        String
+  product          Product @relation(fields: [productId], references: [id])
+  nameSnapshot     String
+  unitPriceAgorot  Int
+  qty              Int     @default(1)
+}
+
+model WorkshopLead {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  eventType String   @default("")
+  details   String   @default("")
+  status    String   @default("new")
+  createdAt DateTime @default(now())
+}
+
+model LookbookPhoto {
+  id        String   @id @default(cuid())
+  path      String
+  alt       String   @default("")
+  productId String?
+  product   Product? @relation(fields: [productId], references: [id])
+  sort      Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Announcement {
+  id     String  @id @default(cuid())
+  text   String
+  active Boolean @default(true)
+  sort   Int     @default(0)
+}
+
+model SiteSetting {
+  key   String @id
+  value String
+}
