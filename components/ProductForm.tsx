@@ -33,19 +33,29 @@ export function ProductForm({
   const router = useRouter();
   const [images, setImages] = useState<ImageRow[]>(product?.images ?? []);
   const [error, setError] = useState("");
+  const [uploading, setUploading] = useState(false);
   const [mode, setMode] = useState(product?.inventoryMode || "one_piece");
 
   async function upload(files: FileList | null) {
     if (!files?.length) return;
-    const data = new FormData();
-    Array.from(files).forEach((file) => data.append("files", file));
-    const res = await fetch("/api/admin/upload", { method: "POST", body: data });
-    const json = await res.json();
-    if (!res.ok) {
-      setError(json.error || "העלאה נכשלה");
-      return;
+    setUploading(true);
+    setError("");
+    try {
+      const prepared = await Promise.all(Array.from(files).map(shrinkImage));
+      const data = new FormData();
+      prepared.forEach((file) => data.append("files", file));
+      const res = await fetch("/api/admin/upload", { method: "POST", body: data });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json.paths?.length) {
+        setError(json.error || "העלאת התמונה נכשלה. נסו שוב.");
+        return;
+      }
+      setImages((current) => [...current, ...json.paths.map((path: string) => ({ path, alt: "" }))]);
+    } catch {
+      setError("העלאת התמונה נכשלה. נסו שוב.");
+    } finally {
+      setUploading(false);
     }
-    setImages((current) => [...current, ...json.paths.map((path: string) => ({ path, alt: "" }))]);
   }
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -72,8 +82,16 @@ export function ProductForm({
         alt: index === 0 ? String(data.get("alt") || image.alt || data.get("name")) : image.alt,
       })),
     };
-    if (payload.status === "active" && (!payload.images.length || !payload.priceAgorot)) {
-      setError("אי אפשר לפרסם בלי תמונה ומחיר");
+    if (uploading) {
+      setError("התמונה עדיין עולה. חכו שתופיע למטה, ואז שמרו.");
+      return;
+    }
+    if (payload.status === "active" && !payload.images.length) {
+      setError("התמונה לא נשמרה. בחרו אותה שוב, חכו שתופיע תצוגה מקדימה, ואז שמרו.");
+      return;
+    }
+    if (payload.status === "active" && !payload.priceAgorot) {
+      setError("אי אפשר לפרסם בלי מחיר");
       return;
     }
     const url = product ? `/api/admin/products/${product.id}` : "/api/admin/products";
@@ -192,7 +210,8 @@ export function ProductForm({
       </label>
       <label>
         תמונות (לפחות אחת לפרסום)
-        <input className="field" type="file" accept="image/*" multiple onChange={(e) => upload(e.target.files)} />
+        <input className="field" type="file" accept="image/*" multiple disabled={uploading} onChange={(e) => upload(e.target.files)} />
+        <span>{uploading ? "מעלים את התמונה..." : "אחרי הבחירה התמונה צריכה להופיע כאן למטה."}</span>
       </label>
       <label>
         alt לתמונה הראשית
@@ -212,9 +231,35 @@ export function ProductForm({
         ))}
       </div>
       {error ? <p className="error">{error}</p> : null}
-      <button className="btn" type="submit">
-        {product ? "שמירה" : "יצירת מוצר"}
+      <button className="btn" type="submit" disabled={uploading}>
+        {uploading ? "מעלים תמונה..." : product ? "שמירה" : "יצירת מוצר"}
       </button>
     </form>
   );
+}
+
+async function shrinkImage(file: File) {
+  if (!file.type.startsWith("image/") || file.type === "image/gif") return file;
+  try {
+    const bitmap = await createImageBitmap(file);
+    const max = 1600;
+    const scale = Math.min(1, max / Math.max(bitmap.width, bitmap.height));
+    const width = Math.max(1, Math.round(bitmap.width * scale));
+    const height = Math.max(1, Math.round(bitmap.height * scale));
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      bitmap.close();
+      return file;
+    }
+    ctx.drawImage(bitmap, 0, 0, width, height);
+    bitmap.close();
+    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.85));
+    if (!blob) return file;
+    return new File([blob], file.name.replace(/\.[^.]+$/, "") + ".jpg", { type: "image/jpeg" });
+  } catch {
+    return file;
+  }
 }
