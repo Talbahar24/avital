@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { formatPrice } from "@/lib/format";
 import { meaningLabel } from "@/lib/meanings";
-import { primaryImage } from "@/lib/products";
+import { primaryImage } from "@/lib/product-media";
 
 type Product = {
   slug: string;
@@ -11,7 +11,7 @@ type Product = {
   meaning: string;
   status: string;
   isFeatured?: boolean;
-  createdAt?: Date;
+  createdAt?: Date | string;
   images: { path: string; alt: string; isPrimary: boolean }[];
 };
 

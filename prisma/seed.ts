@@ -1,7 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import { DEFAULT_CARE, DEFAULT_POPULAR_SEARCHES, DEFAULT_SHIPPING } from "../lib/constants";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  datasources: {
+    db: { url: process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL },
+  },
+});
 
 const products = [
   {

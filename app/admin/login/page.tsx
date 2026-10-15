@@ -1,11 +1,9 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { FormEvent, useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 
 function LoginForm() {
-  const router = useRouter();
   const params = useSearchParams();
   const [error, setError] = useState("");
 
@@ -14,6 +12,7 @@ function LoginForm() {
     const password = String(new FormData(event.currentTarget).get("password") || "");
     const res = await fetch("/api/admin/login", {
       method: "POST",
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password }),
     });
@@ -21,8 +20,9 @@ function LoginForm() {
       setError("סיסמה שגויה");
       return;
     }
-    router.push(params.get("from") || "/admin");
-    router.refresh();
+    const from = params.get("from") || "/admin";
+    const next = from.startsWith("/admin") && !from.startsWith("//") ? from : "/admin";
+    window.location.assign(next);
   }
 
   return (

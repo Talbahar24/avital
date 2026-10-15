@@ -17,3 +17,6 @@ public/uploads/*
 .open-next
 .wrangler
 .dev.vars
+
+.vercel
+.env*
