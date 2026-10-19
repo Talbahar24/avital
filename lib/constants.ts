@@ -4,6 +4,7 @@ export const SITE = {
   instagram: process.env.NEXT_PUBLIC_INSTAGRAM ?? "https://www.instagram.com/avital_jewellery/",
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP ?? "972509054860",
   email: "hello@avitaljewellery.co.il",
+  orderEmail: "avitalvatnik@gmail.com",
   phone: "050-905-4860",
   legalName: "אביטל וטניק",
   hours: "ימים א׳–ה׳, 10:00–18:00",

@@ -39,13 +39,13 @@ function addressLine(order: OrderNotice) {
 
 export async function notifyNewOrder(order: OrderNotice) {
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.ORDER_NOTIFY_EMAIL || SITE.email;
+  const to = process.env.ORDER_NOTIFY_EMAIL || SITE.orderEmail;
   if (!apiKey) {
     console.error(`RESEND_API_KEY is missing; order email was not sent for ${order.publicNumber}`);
     return;
   }
 
-  const from = process.env.RESEND_FROM || `${SITE.brand} <${SITE.email}>`;
+  const from = process.env.RESEND_FROM || `${SITE.brand} <onboarding@resend.dev>`;
   const method = shippingLabel(order.shippingMethod);
   const address = addressLine(order);
   const site = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
