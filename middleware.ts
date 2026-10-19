@@ -8,6 +8,14 @@ export function middleware(request: NextRequest) {
     url.pathname = lower;
     return NextResponse.redirect(url);
   }
+
+  const isAdmin = pathname.startsWith("/admin") || pathname.startsWith("/api/admin");
+  if (!isAdmin && pathname !== "/maintenance") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/maintenance";
+    return NextResponse.rewrite(url);
+  }
+
   if (!pathname.startsWith("/admin") || pathname.startsWith("/admin/login")) {
     return NextResponse.next();
   }
@@ -18,5 +26,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/ADMIN/:path*", "/Admin/:path*"],
+  matcher: ["/((?!_next/static|_next/image|images/|fonts/|favicon.ico|robots.txt).*)"],
 };
