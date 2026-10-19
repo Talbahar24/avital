@@ -3,13 +3,17 @@ import { notFound } from "next/navigation";
 import { formatPrice } from "@/lib/format";
 import { prisma } from "@/lib/prisma";
 
-export const metadata = { title: "אישור הזמנה" };
+export const metadata = { title: "אישור הזמנה", robots: { index: false, follow: false } };
 
 export default async function OrderPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const order = await prisma.order.findUnique({
-    where: { publicNumber: id },
-    include: { items: true },
+    where: { viewToken: id },
+    select: {
+      publicNumber: true,
+      totalAgorot: true,
+      items: { select: { nameSnapshot: true, unitPriceAgorot: true } },
+    },
   });
   if (!order) notFound();
 
@@ -20,10 +24,9 @@ export default async function OrderPage({ params }: { params: Promise<{ id: stri
       <p>
         מספר הזמנה: <strong>{order.publicNumber}</strong>
       </p>
-      {order.paymentStatus === "paid" ? <p>התשלום אושר בסביבת הבדיקה. הפריט ננעל ולא יחזור למלאי.</p> : <p>ההזמנה ממתינה לתשלום.</p>}
       <ul>
-        {order.items.map((item) => (
-          <li key={item.id}>
+        {order.items.map((item, index) => (
+          <li key={`${item.nameSnapshot}-${index}`}>
             {item.nameSnapshot} · {formatPrice(item.unitPriceAgorot)}
           </li>
         ))}

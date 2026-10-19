@@ -49,6 +49,7 @@ model ProductImage {
 model Order {
   id                 String   @id @default(cuid())
   publicNumber       String   @unique
+  viewToken          String?  @unique
   email              String
   phone              String
   fullName           String

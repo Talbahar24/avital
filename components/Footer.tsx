@@ -47,7 +47,7 @@ export function Footer() {
       <div className="legal-bar">
         <div className="wrap">
           <span>
-            {SITE.legalName} · {SITE.companyId} · {SITE.address}
+            {SITE.legalName} · {SITE.phone} · {SITE.email}
           </span>
           <span>המחירים כוללים מע״מ</span>
         </div>

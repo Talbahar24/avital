@@ -66,19 +66,13 @@ export function CheckoutForm({
       setError(json.error || "לא ניתן להשלים את ההזמנה");
       return;
     }
-    const pay = await fetch("/api/checkout/pay", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ orderId: json.orderId }),
-    });
-    const paid = await pay.json();
     setPending(false);
-    if (!pay.ok) {
-      setError(paid.error || "התשלום לא אושר");
+    if (!json.viewToken) {
+      setError("לא ניתן להשלים את ההזמנה");
       return;
     }
     clear();
-    router.push(`/order/${json.publicNumber}`);
+    router.push(`/order/${json.viewToken}`);
   }
 
   if (!ready) return <p>טוען את הסל…</p>;
@@ -119,9 +113,9 @@ export function CheckoutForm({
         </label>
         {error ? <p className="error">{error}</p> : null}
         <button className="btn" type="submit" disabled={pending}>
-          {pending ? "שומרת הזמנה…" : "אישור הזמנה (סביבת בדיקה)"}
+          {pending ? "שומרת הזמנה…" : "שליחת הזמנה"}
         </button>
-        <p>פרטי אשראי לא נשמרים באתר. סליקה חיה תתחבר אחרי בחירת ספק (PayPlus / קארדקום / טרנזילה).</p>
+        <p>פרטי אשראי לא נשמרים באתר, ולא מבוצע חיוב בכרטיס.</p>
       </div>
       <aside className="card">
         <h2>סיכום</h2>
