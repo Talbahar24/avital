@@ -9,6 +9,11 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.name}`,
   },
   description: "תכשיטי אבני חן בעבודת יד. כל פריט יחיד בעולם, עם כוונה ומשמעות.",
+  icons: {
+    icon: [{ url: "/images/c/logo.png", type: "image/png" }],
+    shortcut: ["/images/c/logo.png"],
+    apple: [{ url: "/images/c/logo.png" }],
+  },
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ||
       (process.env.VERCEL_PROJECT_PRODUCTION_URL
