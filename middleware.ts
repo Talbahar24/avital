@@ -9,8 +9,9 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  const maintenanceOn = process.env.MAINTENANCE_MODE === "true";
   const isAdmin = pathname.startsWith("/admin") || pathname.startsWith("/api/admin");
-  if (!isAdmin && pathname !== "/maintenance") {
+  if (maintenanceOn && !isAdmin && pathname !== "/maintenance") {
     const url = request.nextUrl.clone();
     url.pathname = "/maintenance";
     return NextResponse.rewrite(url);
